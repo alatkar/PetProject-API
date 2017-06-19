@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PetProject_API.DataAccess;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,12 +12,19 @@ namespace PetProject_API
     [Route("api/[controller]")]
     public class FeedController : Controller
     {
+        private readonly PetDataContext _context;
+        public FeedController(PetDataContext context)
+        {
+            _context = context;
+        }
+
         // GET: api/values
         [HttpGet]
-        public IEnumerable<Feed> Get()
+        public async Task<IEnumerable<Feed>> Get()
         {
             //var ctx = new ApplicationDbContext(" ");
             //ctx.
+            var data = _context.;
 
             return new Feed[] {
                 new Feed() { message = "First Fedd", type = Feed.FeedType.POST },

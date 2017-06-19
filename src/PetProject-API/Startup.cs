@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using PetProject_API.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace PetProject_API
 {
@@ -36,6 +38,8 @@ namespace PetProject_API
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            services.AddDbContext<PetDataContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
         }
